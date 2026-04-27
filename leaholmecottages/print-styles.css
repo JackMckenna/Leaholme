@@ -1,0 +1,112 @@
+/* PRINT STYLES — applied to BOTH screen (preview) and print */
+
+@page {
+  size: A4 portrait;
+  margin: 1cm;
+}
+
+html, body {
+  background: var(--bg);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Force colors on every element */
+*, *::before, *::after {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+/* Hide chrome that doesn't belong in print */
+.tweaks-panel,
+[data-tweaks-panel],
+.nav, .nav-wrap,
+.nav-burger,
+.nav-reserve,
+.marquee {
+  display: none !important;
+}
+
+/* Print mode: kill sticky positioning everywhere — sticky elements
+   land in awkward spots when page-breaks slice through their container */
+.print-mode aside,
+.print-mode [style*="sticky"] {
+  position: static !important;
+  top: auto !important;
+}
+
+/* Page-section wrapper — break between every major page */
+.print-page {
+  display: block;
+  break-after: page;
+  page-break-after: always;
+  /* No padding-top compensation since nav is hidden */
+}
+.print-page:last-of-type { break-after: auto; page-break-after: auto; }
+
+/* Pages all set their own paddingTop:100 expecting fixed nav — undo */
+.print-page > div[class*="page-enter"] {
+  padding-top: 0 !important;
+}
+.print-page > section:first-child {
+  padding-top: 24px !important;
+}
+
+/* The cinematic hero is 100vh — cap it so it fits a page */
+.print-page section[style*="100vh"],
+.print-page section[style*="minHeight"] {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+/* Disable hover transforms / animations */
+* {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Prevent breaking inside cards / articles */
+article, figure, .card, aside {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Headings shouldn't be orphaned */
+h1, h2, h3 {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+/* Print-friendly link rendering */
+a { text-decoration: none; color: inherit; }
+
+/* Footer should not start on its own page if avoidable */
+footer { break-before: avoid; }
+
+/* Hide any "Tweaks" trigger if it leaks in */
+[id*="tweaks"], [class*="tweaks-trigger"] {
+  display: none !important;
+}
+
+@media print {
+  body { background: var(--bg) !important; }
+
+  /* Buttons in print look weird with full color — soften */
+  button {
+    box-shadow: none !important;
+  }
+
+  /* Avoid huge whitespace from min-height stretchers */
+  section { min-height: 0 !important; }
+
+  /* Marquee, sticky bottom search bars */
+  .marquee, [class*="marquee"] { display: none !important; }
+}
+
+/* Screen preview: show with subtle page divider */
+@media screen {
+  .print-page {
+    border-bottom: 1px dashed var(--line);
+    margin-bottom: 24px;
+  }
+}

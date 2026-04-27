@@ -1,0 +1,147 @@
+// Leaholme Cottages — Northumberland coast data
+const COTTAGES = [
+  {
+    id: 'leaholme',
+    name: 'Leaholme Cottage',
+    type: 'Cottage',
+    tagline: 'A handsome detached villa, fifty paces from the sand',
+    sleeps: 8,
+    bedrooms: 4,
+    bathrooms: 2,
+    dogs: true,
+    pricePerNight: 295,
+    minNights: 3,
+    location: 'High Newton-by-the-Sea',
+    coords: 'N 55.5167°  W 1.6219°',
+    sqft: 2100,
+    summary: "A handsome detached villa in the pretty seaside village of High Newton-by-the-Sea, midway between Alnwick and Bamburgh. Sleeps eight, dog-friendly, with a wood-burner, sea air on the doorstep, and Dunstanburgh on the horizon.",
+    features: [
+      'Sea views from the upper rooms',
+      'Wood-burning stove',
+      'Roll-top bath',
+      'Sand-shake porch & boot room',
+      'Garden with outdoor seating',
+      'Wellies, towels & a flask',
+    ],
+    amenities: ['Wi-Fi', 'Wood-burner', 'Sea view', 'Dogs welcome', 'Garden', 'Hi-fi', 'Nespresso', 'Underfloor heating'],
+  },
+  {
+    id: 'barbican-view',
+    name: 'Barbican View',
+    type: 'Apartment',
+    tagline: 'A Grade II listed apartment, opposite the Alnwick barbican',
+    sleeps: 2,
+    bedrooms: 1,
+    bathrooms: 1,
+    dogs: true,
+    pricePerNight: 195,
+    minNights: 2,
+    location: 'Alnwick',
+    coords: 'N 55.4128°  W 1.7058°',
+    sqft: 720,
+    summary: "A luxury holiday apartment in a historic Grade II listed townhouse, directly opposite the barbican of Alnwick Castle. A short stroll from town-centre shops, restaurants and cafés. Dog-friendly, sleeps two.",
+    features: ['Castle views from the sitting room', 'Original sash windows', 'King-size bed', 'Walk-in shower', 'Dog-friendly'],
+    amenities: ['Wi-Fi', 'Castle view', 'Dogs welcome', 'Hi-fi', 'Nespresso', 'Underfloor heating'],
+  },
+  {
+    id: 'castle-retreat',
+    name: 'Castle Retreat',
+    type: 'Apartment',
+    tagline: 'A pared-back retreat for two, opposite Alnwick Castle',
+    sleeps: 2,
+    bedrooms: 1,
+    bathrooms: 1,
+    dogs: false,
+    pricePerNight: 185,
+    minNights: 2,
+    location: 'Alnwick',
+    coords: 'N 55.4141°  W 1.7022°',
+    sqft: 690,
+    summary: 'A luxury holiday apartment in a Grade II listed townhouse, directly opposite Alnwick Castle. Designed for slow mornings and long walks — limewashed walls, a deep window seat, and the Old Town three minutes away.',
+    features: ['Original Georgian sash windows', 'King-size linen bed', 'Walk-in shower', 'Reading nook', 'Pantry kitchen'],
+    amenities: ['Wi-Fi', 'Castle view', 'Hi-fi', 'Nespresso', 'Underfloor heating'],
+  },
+  {
+    id: 'lionsgate-view',
+    name: 'Lionsgate View',
+    type: 'Apartment',
+    tagline: 'A top-floor apartment with a view of the Percy lions',
+    sleeps: 2,
+    bedrooms: 1,
+    bathrooms: 1,
+    dogs: false,
+    pricePerNight: 195,
+    minNights: 2,
+    location: 'Alnwick',
+    coords: 'N 55.4109°  W 1.7081°',
+    sqft: 740,
+    summary: "A top-floor luxury apartment in a Grade II listed townhouse opposite Alnwick Castle, with views toward the Lion Bridge and the Percy lions. The three apartments — Barbican View, Castle Retreat and Lionsgate View — can be booked together for parties of six.",
+    features: ['Top-floor castle views', 'King-size bed', 'Walk-in shower', 'Pantry kitchen', 'Connectable with the other two apartments'],
+    amenities: ['Wi-Fi', 'Castle view', 'Hi-fi', 'Nespresso', 'Underfloor heating'],
+  },
+];
+
+const REVIEWS = [
+  {
+    quote: 'The kind of place that resets you. We arrived tired and left lighter — the stillness, the bath, fresh bread on the doorstep each morning, and Dunstanburgh on the horizon.',
+    name: 'Eleanor & James',
+    detail: 'Leaholme Cottage · October 2025',
+  },
+  {
+    quote: "I've stayed at Aman, at Soho Farmhouse, at all of them. Leaholme is in a quieter category. Less performative, more felt.",
+    name: 'Priya M.',
+    detail: 'Castle Retreat · February 2026',
+  },
+  {
+    quote: 'Six of us across the three apartments — Barbican, Castle Retreat and Lionsgate — and the Lion Bridge view at dusk. Lynn made it effortless.',
+    name: 'The Whitfield family',
+    detail: 'Lionsgate View · December 2025',
+  },
+];
+
+const LOCAL = [
+  { kind: 'Walk', name: 'Bamburgh to Budle Bay', detail: '6.4km · sand & dunes', dist: '12 min drive' },
+  { kind: 'Castle', name: 'Dunstanburgh Castle', detail: 'A clifftop ruin, reached on foot', dist: '15 min walk from High Newton' },
+  { kind: 'Pub', name: 'The Ship Inn, Low Newton', detail: 'Crab sandwiches, own-brewed ales', dist: '5 min drive' },
+  { kind: 'Eat', name: 'The Treehouse, Alnwick Garden', detail: 'Candlelit, in the canopy', dist: '6 min walk from Alnwick' },
+  { kind: 'Books', name: 'Barter Books, Alnwick', detail: 'A station of secondhand shelves', dist: '4 min walk from Alnwick' },
+  { kind: 'Swim', name: 'Embleton Bay', detail: 'Wide sands, brisk water', dist: '4 min drive' },
+  { kind: 'Island', name: 'Holy Island of Lindisfarne', detail: 'Time it with the tide', dist: '35 min drive' },
+  { kind: 'Boat', name: 'Farne Islands puffin trips', detail: 'From Seahouses harbour', dist: '20 min drive' },
+];
+
+const GALLERY = [
+  { caption: 'Whitewashed cottage, dawn', tone: 'stone' },
+  { caption: 'Linen bed, north light', tone: 'soft' },
+  { caption: 'Castle view from Barbican', tone: 'dark' },
+  { caption: 'Crab pots & nets', tone: 'sage' },
+  { caption: 'Aga in morning sun', tone: 'soft' },
+  { caption: 'Walled courtyard', tone: 'sage' },
+  { caption: 'Sash window & sea', tone: 'dark' },
+  { caption: 'Boot room', tone: 'stone' },
+  { caption: 'Dunstanburgh on the horizon', tone: 'sage' },
+  { caption: 'Reading nook', tone: 'soft' },
+  { caption: 'Hand-thrown ceramics', tone: 'stone' },
+  { caption: 'Lion Bridge at dusk', tone: 'dark' },
+];
+
+const JOURNAL = [
+  { kind: 'Field Notes', title: 'A short guide to the Northumberland coast in winter', read: '6 min read' },
+  { kind: 'Provenance', title: 'The masons, joiners and weavers we worked with', read: '9 min read' },
+  { kind: 'Recipe', title: "Bread on the doorstep — our baker's sourdough", read: '4 min read' },
+];
+
+const CONTACT = {
+  name: 'Lynn Clarke',
+  business: 'Leaholme Cottages',
+  address1: 'Sunnybank, The Crescent',
+  address2: 'Wylam, Northumberland',
+  postcode: 'NE41 8HU',
+  tel: '01661 852286',
+  telIntl: '+44 1661 852286',
+  mobile: '07867 556705',
+  mobileIntl: '+44 7867 556705',
+  email: 'stay@leaholmecottages.co.uk',
+};
+
+window.LEAHOLME_DATA = { COTTAGES, REVIEWS, LOCAL, GALLERY, JOURNAL, CONTACT };
